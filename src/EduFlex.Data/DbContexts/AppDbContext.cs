@@ -31,7 +31,7 @@ public class AppDbContext : DbContext
             .HasOne(ug => ug.User)
             .WithMany(u => u.UserGroups)
             .HasForeignKey(ug => ug.UserId)
-            .OnDelete(DeleteBehavior.NoAction); // Kaskadli o‘chirishdan saqlanish uchun
+            .OnDelete(DeleteBehavior.NoAction); 
 
         modelBuilder.Entity<UserGroup>()
             .HasOne(ug => ug.Group)

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EduFlex.Domain.Enums;
 
-namespace EduFlex.Service.DTOs.Users.UserRole
+namespace EduFlex.Service.DTOs.Users.UserRole;
+
+public class UserRoleForUpdateDto
 {
-    internal class UserRoleForUpdateDto
-    {
-    }
+    public long UserId { get; set; }
+    public Role Role { get; set; }
 }

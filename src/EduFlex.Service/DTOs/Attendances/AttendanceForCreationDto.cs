@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EduFlex.Domain.Enums;
 
-namespace EduFlex.Service.DTOs.Attendances
+namespace EduFlex.Service.DTOs.Attendances;
+
+public class AttendanceForCreationDto
 {
-    internal class AttendanceForCreationDto
-    {
-    }
+    public long StudentId { get; set; }
+    public long CourseId { get; set; }
+    public DateTime Date { get; set; }
+    public AttendanceStatus Status { get; set; }
 }

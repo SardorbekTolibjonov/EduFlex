@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace EduFlex.Service.DTOs.Sessions;
 
-namespace EduFlex.Service.DTOs.Sessions
+public class SessionForResultDto
 {
-    internal class SessionForResultDto
-    {
-    }
+    public long Id { get; set; }
+    public long GroupId { get; set; }
+    public DateTime Date { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public string Topic { get; set; }
 }
