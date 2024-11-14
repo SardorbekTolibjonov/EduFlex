@@ -24,6 +24,19 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<UserGroup>()
+        .HasKey(ug => ug.Id);
+
+        modelBuilder.Entity<UserGroup>()
+            .HasOne(ug => ug.User)
+            .WithMany(u => u.UserGroups)
+            .HasForeignKey(ug => ug.UserId)
+            .OnDelete(DeleteBehavior.NoAction); // Kaskadli o‘chirishdan saqlanish uchun
+
+        modelBuilder.Entity<UserGroup>()
+            .HasOne(ug => ug.Group)
+            .WithMany(g => g.UserGroups)
+            .HasForeignKey(ug => ug.GroupId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

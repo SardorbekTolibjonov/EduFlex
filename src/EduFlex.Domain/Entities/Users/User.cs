@@ -13,6 +13,6 @@ public class User : Auditable
     public string Username { get; set; }
     public string Password { get; set; }
 
-    public ICollection<Group> Groups { get; set; }
+    public ICollection<UserGroup> UserGroups { get; set; }
 
 }

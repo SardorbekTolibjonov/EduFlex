@@ -6,12 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3FE74019-57E1-4BCE-A80E-F305A7E23971}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduFlex.Api", "src\EduFlex.Api\EduFlex.Api.csproj", "{D22E3CD0-BADC-4336-8070-504AE943CD6A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0108869E-229F-4431-A0B6-AABABD34E7C2} = {0108869E-229F-4431-A0B6-AABABD34E7C2}
+		{AAC4CC02-1D3A-42CD-8464-C64471DFB8E6} = {AAC4CC02-1D3A-42CD-8464-C64471DFB8E6}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduFlex.Data", "src\EduFlex.Data\EduFlex.Data.csproj", "{AAC4CC02-1D3A-42CD-8464-C64471DFB8E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduFlex.Domain", "src\EduFlex.Domain\EduFlex.Domain.csproj", "{97D8C6D5-6E80-48D5-806C-C7A71CB74774}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduFlex.Service", "src\EduFlex.Service\EduFlex.Service.csproj", "{0108869E-229F-4431-A0B6-AABABD34E7C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97D8C6D5-6E80-48D5-806C-C7A71CB74774} = {97D8C6D5-6E80-48D5-806C-C7A71CB74774}
+		{AAC4CC02-1D3A-42CD-8464-C64471DFB8E6} = {AAC4CC02-1D3A-42CD-8464-C64471DFB8E6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

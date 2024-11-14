@@ -18,4 +18,6 @@ public class Group : Auditable
     public int Capacity { get; set; }
     public GroupStatus Status { get; set; }
 
+    public ICollection<UserGroup> UserGroups { get; set; }    
+
 }
