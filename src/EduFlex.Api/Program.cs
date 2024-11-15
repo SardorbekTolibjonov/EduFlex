@@ -1,3 +1,5 @@
+using EduFlex.Api.Extensions;
+using EduFlex.Api.Middlewares;
 using EduFlex.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,9 @@ builder.Services.AddSwaggerGen();
 // database
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// custom services
+builder.Services.AddCustomServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionHandlerMiddleWare>();
 app.UseAuthorization();
 
 app.MapControllers();

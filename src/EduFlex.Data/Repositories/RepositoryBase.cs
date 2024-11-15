@@ -10,10 +10,10 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
     private readonly AppDbContext dbContext;
     private readonly DbSet<TEntity> dbSet;
 
-    public RepositoryBase(AppDbContext dbContext,DbSet<TEntity> dbSet)
+    public RepositoryBase(AppDbContext dbContext)
     {
         this.dbContext = dbContext;
-        this.dbSet = dbSet;
+        this.dbSet = dbContext.Set<TEntity>();
     }
     public async Task<TEntity> AddAsync(TEntity entity)
     {
@@ -35,8 +35,9 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
            
     public async Task<bool> RemoveAsync(long id)
     {
-        await this.dbSet.Where(e => e.Id == id)
+        var entity = await this.dbSet.Where(e => e.Id == id)
             .FirstOrDefaultAsync();
+        this.dbSet.Remove(entity);
         await this.dbContext.SaveChangesAsync();
 
         return true;

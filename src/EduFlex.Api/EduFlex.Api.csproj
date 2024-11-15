@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EduFlex.Data\EduFlex.Data.csproj" />
+    <ProjectReference Include="..\EduFlex.Service\EduFlex.Service.csproj" />
   </ItemGroup>
 
 </Project>
