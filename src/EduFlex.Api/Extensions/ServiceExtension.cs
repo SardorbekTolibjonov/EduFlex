@@ -18,5 +18,6 @@ public static class ServiceExtension
 
         // Entity Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserRoleService, UserRoleService>();
     }
 }
