@@ -1,29 +1,31 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Domain.Enums;
-using EduFlex.Service.DTOs.Users.UserRole;
+using EduFlex.Domain.Entities.Users;
+using EduFlex.Service.DTOs.Users.User;
 using EduFlex.Service.Interfaces.Users;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EduFlex.Api.Controllers;
+namespace EduFlex.Api.Controllers.Users;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class UserRolesController : ControllerBase
+public class UsersController : ControllerBase
 {
-    private readonly IUserRoleService userRoleService;
-    public UserRolesController(IUserRoleService userRoleService)
+    private readonly IUserService userService;
+    public UsersController(IUserService userService)
     {
-        this.userRoleService = userRoleService;
+        this.userService = userService;
     }
+
     [HttpPost]
-    public async Task<IActionResult> Create([FromQuery]UserRoleForCreationDto userRole)
+    public async Task<IActionResult> Create(UserForCreationDto user)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userRoleService.AddUserRoleAsync(userRole)
+            Data = await userService.CreateUserAsync(user)
         };
+
         return Ok(response);
     }
     [HttpGet]
@@ -33,41 +35,44 @@ public class UserRolesController : ControllerBase
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userRoleService.GetAllUserRolesAsync()
+            Data = await userService.GetAllUsersAsync()
         };
+
         return Ok(response);
     }
-    [HttpGet("{role}")]
-    public async Task<IActionResult> GetByRoleName(Role role)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(long id)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userRoleService.GetUserRoleByRoleNameAsync(role)
+            Data = await userService.GetUserByIdAsync(id)
         };
+
         return Ok(response);
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUserRole(long id)
+    public async Task<IActionResult> DeleteUser(long id)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userRoleService.DeleteUserRoleAsync(id)
+            Data = await userService.DeleteUserAsync(id)
         };
+
         return Ok(response);
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUserRole(long id, [FromQuery] UserRoleForUpdateDto userRole)
+    public async Task<IActionResult> UpdateUser(long id, UserForUpdateDto user)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userRoleService.UpdateUserRoleAsync(id, userRole)
+            Data = await userService.UpdateUserAsync(id, user)
         };
         return Ok(response);
     }

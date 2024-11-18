@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EduFlex.Service.DTOs.Groups;
 
-namespace EduFlex.Service.Interfaces.Groups
+namespace EduFlex.Service.Interfaces.Groups;
+
+public interface IGroupService
 {
-    internal class Group
-    {
-    }
+    Task<GroupForResultDto> AddGroupAsync(GroupForCreationDto dto);
+    Task<bool> DeleteGroupAsync(long id);
+    Task<IEnumerable<GroupForResultDto>> GetAllGroupsAsync();
+    Task<GroupForResultDto> GetGroupByIdAsync(long id);
+    Task<GroupForResultDto> UpdateGroupAsync(long id, GroupForUpdateDto dto);
 }

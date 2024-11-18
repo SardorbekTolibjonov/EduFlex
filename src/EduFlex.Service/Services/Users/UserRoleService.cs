@@ -7,7 +7,7 @@ using EduFlex.Service.Exceptions;
 using EduFlex.Service.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace EduFlex.Service.Services;
+namespace EduFlex.Service.Services.Users;
 
 public class UserRoleService : IUserRoleService
 {
@@ -26,7 +26,7 @@ public class UserRoleService : IUserRoleService
     }
     public async Task<UserRoleForResultDto> AddUserRoleAsync(UserRoleForCreationDto userRole)
     {
-        var user = await this.userRepository.GetAllAsync()
+        var user = await userRepository.GetAllAsync()
                                        .Where(u => u.Id == userRole.UserId)
                                        .AsNoTracking()
                                        .FirstOrDefaultAsync();
@@ -34,17 +34,17 @@ public class UserRoleService : IUserRoleService
         if (user == null)
             throw new EduFlexException(404, "User not found");
 
-        var mappedUserRole = this.mapper.Map<UserRole>(userRole);
+        var mappedUserRole = mapper.Map<UserRole>(userRole);
         mappedUserRole.CreatedAt = DateTime.UtcNow;
 
-        var result = await this.repository.AddAsync(mappedUserRole);
+        var result = await repository.AddAsync(mappedUserRole);
 
-        return this.mapper.Map<UserRoleForResultDto>(result);
+        return mapper.Map<UserRoleForResultDto>(result);
     }
 
     public async Task<bool> DeleteUserRoleAsync(long id)
     {
-        var check = await this.repository.GetAllAsync()
+        var check = await repository.GetAllAsync()
                                         .Where(u => u.Id == id)
                                         .AsNoTracking()
                                         .FirstOrDefaultAsync();
@@ -52,21 +52,21 @@ public class UserRoleService : IUserRoleService
         if (check == null)
             throw new EduFlexException(404, "UserRole not found");
 
-        return await this.repository.RemoveAsync(id);
+        return await repository.RemoveAsync(id);
     }
 
     public async Task<IEnumerable<UserRoleForResultDto>> GetAllUserRolesAsync()
     {
-        var userRoles = await this.repository.GetAllAsync()
+        var userRoles = await repository.GetAllAsync()
                                             .AsNoTracking()
                                             .ToListAsync();
 
-        return this.mapper.Map<IEnumerable<UserRoleForResultDto>>(userRoles);
+        return mapper.Map<IEnumerable<UserRoleForResultDto>>(userRoles);
     }
 
     public async Task<IEnumerable<UserRoleForResultDto>> GetUserRoleByRoleNameAsync(Role role)
     {
-        var result = await this.repository.GetAllAsync()
+        var result = await repository.GetAllAsync()
                                    .Where(u => u.Role == role)
                                    .AsNoTracking()
                                    .ToListAsync();
@@ -74,19 +74,19 @@ public class UserRoleService : IUserRoleService
         if (result == null)
             throw new EduFlexException(404, "Role not found");
 
-        return this.mapper.Map<IEnumerable<UserRoleForResultDto>>(result);
+        return mapper.Map<IEnumerable<UserRoleForResultDto>>(result);
     }
 
     public async Task<UserRoleForResultDto> UpdateUserRoleAsync(long id, UserRoleForUpdateDto userRole)
     {
-        var user = await this.userRepository.GetAllAsync()
+        var user = await userRepository.GetAllAsync()
                                         .Where(u => u.Id == userRole.UserId)
                                         .AsNoTracking()
                                         .FirstOrDefaultAsync();
 
         if (user == null)
             throw new EduFlexException(404, "User not found");
-        var check = await this.repository.GetAllAsync()
+        var check = await repository.GetAllAsync()
                                          .Where(ur => ur.Id == id)
                                          .AsNoTracking()
                                          .FirstOrDefaultAsync();
@@ -94,18 +94,18 @@ public class UserRoleService : IUserRoleService
         if (check == null)
             throw new EduFlexException(404, "UserRole not found");
 
-        var entity = await this.repository.GetAllAsync()
+        var entity = await repository.GetAllAsync()
                                          .Where(ur => ur.UserId == userRole.UserId && ur.Role == userRole.Role)
                                          .AsNoTracking()
                                          .FirstOrDefaultAsync();
         if (entity != null)
             throw new EduFlexException(409, "UserRole already exists");
 
-        var mappedUserRole = this.mapper.Map(userRole,check);
+        var mappedUserRole = mapper.Map(userRole, check);
         mappedUserRole.UpdatedAt = DateTime.UtcNow;
 
-        var result = await this.repository.UpdateAsync(mappedUserRole);
+        var result = await repository.UpdateAsync(mappedUserRole);
 
-        return this.mapper.Map<UserRoleForResultDto>(result);
+        return mapper.Map<UserRoleForResultDto>(result);
     }
 }

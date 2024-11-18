@@ -1,31 +1,28 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Domain.Entities.Users;
-using EduFlex.Service.DTOs.Users.User;
-using EduFlex.Service.Interfaces.Users;
+using EduFlex.Service.DTOs.Courses;
+using EduFlex.Service.Interfaces.Courses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EduFlex.Api.Controllers;
+namespace EduFlex.Api.Controllers.Courses;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class UsersController : ControllerBase
+public class CoursesController : ControllerBase
 {
-    private readonly IUserService userService;
-    public UsersController(IUserService userService)
+    private readonly ICourseService courseService;
+    public CoursesController(ICourseService courseService)
     {
-        this.userService = userService;
+        this.courseService = courseService;
     }
-
     [HttpPost]
-    public async Task<IActionResult> Create(UserForCreationDto user)
+    public async Task<IActionResult> Create(CourseForCreationDto course)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userService.CreateUserAsync(user)
+            Data = await courseService.AddCourseAsync(course)
         };
-
         return Ok(response);
     }
     [HttpGet]
@@ -35,9 +32,8 @@ public class UsersController : ControllerBase
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userService.GetAllUsersAsync()
+            Data = await courseService.GetAllCoursesAsync()
         };
-
         return Ok(response);
     }
     [HttpGet("{id}")]
@@ -47,32 +43,29 @@ public class UsersController : ControllerBase
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userService.GetUserByIdAsync(id)
+            Data = await courseService.GetCourseByIdAsync(id)
         };
-
         return Ok(response);
     }
-    
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUser(long id)
+    public async Task<IActionResult> DeleteCourse(long id)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userService.DeleteUserAsync(id)
+            Data = await courseService.DeleteCourseAsync(id)
         };
-
         return Ok(response);
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(long id, UserForUpdateDto user)
+    public async Task<IActionResult> UpdateCourse(long id, CourseForUpdateDto course)
     {
         var response = new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.userService.UpdateUserAsync(id, user)
+            Data = await courseService.UpdateCourseAsync(id, course)
         };
         return Ok(response);
     }
