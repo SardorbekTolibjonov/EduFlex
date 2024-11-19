@@ -50,6 +50,7 @@ public class CourseService : ICourseService
     public async Task<IEnumerable<CourseForResultDto>> GetAllCoursesAsync()
     {
         var courses = await this.repository.GetAllAsync()
+                                           .Include(c => c.Groups)    
                                            .AsNoTracking()
                                            .ToListAsync();
 
