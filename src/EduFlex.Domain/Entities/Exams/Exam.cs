@@ -13,5 +13,6 @@ public class Exam : Auditable
     public long StudentId { get; set; }
     public User User { get; set; }
     public float ExamResult { get; set; }
+    public DateTime ExamDate { get; set; }
     public ExamStatus Status { get; set; }
 }

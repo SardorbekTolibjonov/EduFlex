@@ -10,5 +10,6 @@ public class ExamForResultDto
     public long GroupId { get; set; }
     public long StudentId { get; set; }
     public float ExamResult { get; set; }
+    public DateTime ExamDate { get; set; }
     public ExamStatus Status { get; set; }
 }
