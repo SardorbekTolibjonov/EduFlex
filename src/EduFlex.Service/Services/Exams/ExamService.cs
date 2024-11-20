@@ -3,6 +3,7 @@ using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Exams;
 using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Users;
+using EduFlex.Domain.Enums;
 using EduFlex.Service.DTOs.Exams;
 using EduFlex.Service.Exceptions;
 using EduFlex.Service.Interfaces.Exams;
@@ -55,7 +56,13 @@ public class ExamService : IExamService
 
         if (exam != null)
             throw new EduFlexException(400, "Exam already exists");
+        if(dto.ExamResult < 0)
+            throw new EduFlexException(400, "Invalid exam result");
 
+        if(dto.ExamResult >= 60)
+            exam.Status = ExamStatus.passed;
+        else
+            exam.Status = ExamStatus.failed;
 
         var entity = this.mapper.Map<Exam>(dto);
         entity.ExamDate = date;
@@ -114,6 +121,14 @@ public class ExamService : IExamService
                                             .FirstOrDefaultAsync();
         if (exam == null)
             throw new EduFlexException(404, "Exam not found");
+
+        if (dto.ExamResult < 0)
+            throw new EduFlexException(400, "Invalid exam result");
+
+        if (dto.ExamResult >= 60)
+            exam.Status = ExamStatus.passed;
+        else
+            exam.Status = ExamStatus.failed;
 
         var date = DateTime.ParseExact(dto.ExamDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 

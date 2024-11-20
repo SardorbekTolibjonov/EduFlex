@@ -10,5 +10,4 @@ public class ExamForUpdateDto
     public long StudentId { get; set; }
     public float ExamResult { get; set; }
     public string ExamDate { get; set; }
-    public ExamStatus Status { get; set; }
 }
