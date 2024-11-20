@@ -3,8 +3,8 @@
 public class SessionForCreationDto
 {
     public long GroupId { get; set; }
-    public DateTime Date { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public string Date { get; set; } // qaysi kuni
+    public string StartTime { get; set; } // boshlanish vaqti
+    public string EndTime { get; set; } // tugash vaqti
     public string Topic { get; set; }
 }

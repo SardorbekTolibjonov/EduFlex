@@ -3,8 +3,8 @@
 public class SessionForUpdateDto
 {
     public long GroupId { get; set; }
-    public DateTime Date { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public string Date { get; set; }
+    public string StartTime { get; set; }
+    public string EndTime { get; set; }
     public string Topic { get; set; }
 }
