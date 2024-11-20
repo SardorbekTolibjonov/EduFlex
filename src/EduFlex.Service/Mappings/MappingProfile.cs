@@ -11,6 +11,7 @@ using EduFlex.Service.DTOs.Exams;
 using EduFlex.Service.DTOs.Groups;
 using EduFlex.Service.DTOs.Sessions;
 using EduFlex.Service.DTOs.Users.User;
+using EduFlex.Service.DTOs.Users.UserGroup;
 using EduFlex.Service.DTOs.Users.UserRole;
 
 namespace EduFlex.Service.Mappings;
@@ -38,6 +39,10 @@ public class MappingProfile : Profile
         CreateMap<Group, GroupForCreationDto>().ReverseMap();
         CreateMap<Group, GroupForResultDto>().ReverseMap();
         CreateMap<Group, GroupForUpdateDto>().ReverseMap();
+
+        // UserGroups Mapping
+        CreateMap<UserGroup, UserGroupDto>().ReverseMap();
+        CreateMap<UserGroup, UserGroupForResultDto>().ReverseMap();
 
         // Attendances Mapping
         CreateMap<Attendance, AttendanceForCreationDto>().ReverseMap();

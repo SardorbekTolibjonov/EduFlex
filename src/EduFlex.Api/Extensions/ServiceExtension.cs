@@ -25,5 +25,6 @@ public static class ServiceExtension
         services.AddScoped<IUserRoleService, UserRoleService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IGroupService, GroupService>();
+        services.AddScoped<IUserGroupService, UserGroupService>();
     }
 }
