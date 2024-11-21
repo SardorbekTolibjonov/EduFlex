@@ -43,12 +43,14 @@ public class SessionService : ISessionService
 
         if (session != null)
             throw new EduFlexException(409, "Session already exists");
+
         var startTime = TimeSpan.ParseExact(dto.StartTime, "hh\\:mm", CultureInfo.InvariantCulture);
         var endTime = TimeSpan.ParseExact(dto.EndTime, "hh\\:mm", CultureInfo.InvariantCulture);
 
         if((startTime.Hours == endTime.Hours && startTime.Minutes>=endTime.Minutes)
             || (startTime.Hours > endTime.Hours))
             throw new EduFlexException(400, "Invalid time range");
+
         var entity = this.mapper.Map<Session>(dto);
         entity.CreatedAt = DateTime.UtcNow;
         entity.StartTime = startTime;

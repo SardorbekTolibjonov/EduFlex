@@ -1,11 +1,13 @@
 ﻿using EduFlex.Data.IRepositories;
 using EduFlex.Data.Repositories;
+using EduFlex.Service.Interfaces.Attendances;
 using EduFlex.Service.Interfaces.Courses;
 using EduFlex.Service.Interfaces.Exams;
 using EduFlex.Service.Interfaces.Groups;
 using EduFlex.Service.Interfaces.Sessions;
 using EduFlex.Service.Interfaces.Users;
 using EduFlex.Service.Mappings;
+using EduFlex.Service.Services.Attendances;
 using EduFlex.Service.Services.Courses;
 using EduFlex.Service.Services.Exams;
 using EduFlex.Service.Services.Groups;
@@ -32,5 +34,6 @@ public static class ServiceExtension
         services.AddScoped<IUserGroupService, UserGroupService>();
         services.AddScoped<IExamService, ExamService>();
         services.AddScoped<ISessionService,SessionService>();
+        services.AddScoped<IAttendanceService, AttendanceService>();
     }
 }
