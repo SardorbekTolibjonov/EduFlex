@@ -1,6 +1,6 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.DTOs.Sessions;
-using EduFlex.Service.Interfaces.Sessions;
+using EduFlex.Domain.DTOs.Sessions;
+using EduFlex.Domain.Interfaces.Sessions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduFlex.Api.Controllers.Sessions;

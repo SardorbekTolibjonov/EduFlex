@@ -1,8 +1,8 @@
-﻿using EduFlex.Service.DTOs.Groups;
-using EduFlex.Service.DTOs.Users.User;
-using EduFlex.Service.DTOs.Users.UserGroup;
+﻿using EduFlex.Domain.DTOs.Groups;
+using EduFlex.Domain.DTOs.Users.User;
+using EduFlex.Domain.DTOs.Users.UserGroup;
 
-namespace EduFlex.Service.Interfaces.Users;
+namespace EduFlex.Domain.Interfaces.Users;
 
 public interface IUserGroupService
 {

@@ -1,6 +1,6 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.DTOs.Attendances;
-using EduFlex.Service.Interfaces.Attendances;
+using EduFlex.Domain.DTOs.Attendances;
+using EduFlex.Domain.Interfaces.Attendances;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduFlex.Api.Controllers.Attendances;

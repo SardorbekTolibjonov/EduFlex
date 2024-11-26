@@ -2,14 +2,14 @@
 using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Users;
-using EduFlex.Service.DTOs.Groups;
-using EduFlex.Service.DTOs.Users.User;
-using EduFlex.Service.DTOs.Users.UserGroup;
-using EduFlex.Service.Exceptions;
-using EduFlex.Service.Interfaces.Users;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Groups;
+using EduFlex.Domain.DTOs.Users.User;
+using EduFlex.Domain.DTOs.Users.UserGroup;
+using EduFlex.Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace EduFlex.Service.Services.Users;
+namespace EduFlex.Domain.Services.Users;
 
 public class UserGroupService : IUserGroupService
 {
@@ -31,7 +31,7 @@ public class UserGroupService : IUserGroupService
     }
     public async Task<UserGroupForResultDto> AddUserGroupAsync(UserGroupDto dto)
     {
-        var user  = await this.userRepository.GetAllAsync()
+        var user = await this.userRepository.GetAllAsync()
                                        .Where(c => c.Id == dto.UserId)
                                        .AsNoTracking()
                                        .FirstOrDefaultAsync();
@@ -93,10 +93,10 @@ public class UserGroupService : IUserGroupService
     public async Task<IEnumerable<GroupForResultDto>> GetGroupsByUserIdAsync(long userId)
     {
         var groups = await this.userGroupRepository.GetAllAsync()
-                                                   .Include(ug => ug.Group) 
-                                                   .Where(ug => ug.UserId == userId) 
-                                                   .Select(ug => ug.Group) 
-                                                   .AsNoTracking() 
+                                                   .Include(ug => ug.Group)
+                                                   .Where(ug => ug.UserId == userId)
+                                                   .Select(ug => ug.Group)
+                                                   .AsNoTracking()
                                                    .ToListAsync();
 
         return this.mapper.Map<IEnumerable<GroupForResultDto>>(groups);

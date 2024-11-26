@@ -1,6 +1,6 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.DTOs.Users.UserGroup;
-using EduFlex.Service.Interfaces.Users;
+using EduFlex.Domain.DTOs.Users.UserGroup;
+using EduFlex.Domain.Interfaces.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduFlex.Api.Controllers.Users;

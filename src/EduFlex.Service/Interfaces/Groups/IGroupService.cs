@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Groups;
+﻿using EduFlex.Domain.DTOs.Groups;
 
-namespace EduFlex.Service.Interfaces.Groups;
+namespace EduFlex.Domain.Interfaces.Groups;
 
 public interface IGroupService
 {

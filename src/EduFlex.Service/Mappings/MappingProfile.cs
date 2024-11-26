@@ -5,16 +5,16 @@ using EduFlex.Domain.Entities.Exams;
 using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Sessions;
 using EduFlex.Domain.Entities.Users;
-using EduFlex.Service.DTOs.Attendances;
-using EduFlex.Service.DTOs.Courses;
-using EduFlex.Service.DTOs.Exams;
-using EduFlex.Service.DTOs.Groups;
-using EduFlex.Service.DTOs.Sessions;
-using EduFlex.Service.DTOs.Users.User;
-using EduFlex.Service.DTOs.Users.UserGroup;
-using EduFlex.Service.DTOs.Users.UserRole;
+using EduFlex.Domain.DTOs.Attendances;
+using EduFlex.Domain.DTOs.Courses;
+using EduFlex.Domain.DTOs.Exams;
+using EduFlex.Domain.DTOs.Groups;
+using EduFlex.Domain.DTOs.Sessions;
+using EduFlex.Domain.DTOs.Users.User;
+using EduFlex.Domain.DTOs.Users.UserGroup;
+using EduFlex.Domain.DTOs.Users.UserRole;
 
-namespace EduFlex.Service.Mappings;
+namespace EduFlex.Domain.Mappings;
 
 public class MappingProfile : Profile
 {

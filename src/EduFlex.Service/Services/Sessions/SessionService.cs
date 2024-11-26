@@ -2,13 +2,13 @@
 using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Sessions;
-using EduFlex.Service.DTOs.Sessions;
-using EduFlex.Service.Exceptions;
-using EduFlex.Service.Interfaces.Sessions;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Sessions;
+using EduFlex.Domain.Interfaces.Sessions;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
-namespace EduFlex.Service.Services.Sessions;
+namespace EduFlex.Domain.Services.Sessions;
 
 public class SessionService : ISessionService
 {
@@ -33,7 +33,7 @@ public class SessionService : ISessionService
                                               .FirstOrDefaultAsync();
 
         if (group == null)
-            throw new EduFlexException(404,"Group not found");
+            throw new EduFlexException(404, "Group not found");
 
         var date = DateTime.ParseExact(dto.Date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         var session = await this.repository.GetAllAsync()
@@ -47,7 +47,7 @@ public class SessionService : ISessionService
         var startTime = TimeSpan.ParseExact(dto.StartTime, "hh\\:mm", CultureInfo.InvariantCulture);
         var endTime = TimeSpan.ParseExact(dto.EndTime, "hh\\:mm", CultureInfo.InvariantCulture);
 
-        if((startTime.Hours == endTime.Hours && startTime.Minutes>=endTime.Minutes)
+        if ((startTime.Hours == endTime.Hours && startTime.Minutes >= endTime.Minutes)
             || (startTime.Hours > endTime.Hours))
             throw new EduFlexException(400, "Invalid time range");
 

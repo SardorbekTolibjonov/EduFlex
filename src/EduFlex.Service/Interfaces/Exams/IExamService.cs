@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Exams;
+﻿using EduFlex.Domain.DTOs.Exams;
 
-namespace EduFlex.Service.Interfaces.Exams;
+namespace EduFlex.Domain.Interfaces.Exams;
 
 public interface IExamService
 {

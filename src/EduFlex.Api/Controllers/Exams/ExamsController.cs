@@ -1,6 +1,6 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.DTOs.Exams;
-using EduFlex.Service.Interfaces.Exams;
+using EduFlex.Domain.DTOs.Exams;
+using EduFlex.Domain.Interfaces.Exams;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduFlex.Api.Controllers.Exams;

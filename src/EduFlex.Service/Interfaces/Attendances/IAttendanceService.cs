@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Attendances;
+﻿using EduFlex.Domain.DTOs.Attendances;
 
-namespace EduFlex.Service.Interfaces.Attendances;
+namespace EduFlex.Domain.Interfaces.Attendances;
 
 public interface IAttendanceService
 {

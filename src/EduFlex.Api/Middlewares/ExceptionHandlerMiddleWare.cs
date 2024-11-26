@@ -1,5 +1,5 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.Exceptions;
+using EduFlex.Domain.Exceptions;
 
 namespace EduFlex.Api.Middlewares;
 

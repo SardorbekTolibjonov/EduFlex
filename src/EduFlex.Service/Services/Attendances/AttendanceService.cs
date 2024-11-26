@@ -3,13 +3,13 @@ using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Attendances;
 using EduFlex.Domain.Entities.Sessions;
 using EduFlex.Domain.Entities.Users;
-using EduFlex.Service.DTOs.Attendances;
-using EduFlex.Service.Exceptions;
-using EduFlex.Service.Interfaces.Attendances;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Attendances;
+using EduFlex.Domain.Interfaces.Attendances;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
-namespace EduFlex.Service.Services.Attendances;
+namespace EduFlex.Domain.Services.Attendances;
 
 public class AttendanceService : IAttendanceService
 {
@@ -34,7 +34,7 @@ public class AttendanceService : IAttendanceService
     }
     public async Task<AttendanceForResultDto> AddAttendanceAsync(AttendanceForCreationDto dto)
     {
-        var user  = await this.userRepository.GetAllAsync()
+        var user = await this.userRepository.GetAllAsync()
                                              .Where(u => u.Id == dto.StudentId)
                                              .AsNoTracking()
                                              .FirstOrDefaultAsync();

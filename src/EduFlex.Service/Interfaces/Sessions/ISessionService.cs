@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Sessions;
+﻿using EduFlex.Domain.DTOs.Sessions;
 
-namespace EduFlex.Service.Interfaces.Sessions;
+namespace EduFlex.Domain.Interfaces.Sessions;
 
 public interface ISessionService
 {

@@ -4,13 +4,13 @@ using EduFlex.Domain.Entities.Exams;
 using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Users;
 using EduFlex.Domain.Enums;
-using EduFlex.Service.DTOs.Exams;
-using EduFlex.Service.Exceptions;
-using EduFlex.Service.Interfaces.Exams;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Exams;
+using EduFlex.Domain.Interfaces.Exams;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
-namespace EduFlex.Service.Services.Exams;
+namespace EduFlex.Domain.Services.Exams;
 
 public class ExamService : IExamService
 {
@@ -19,9 +19,9 @@ public class ExamService : IExamService
     private readonly IRepositoryBase<User> userRepository;
     private readonly IRepositoryBase<Group> groupRepository;
 
-    public ExamService(IMapper mapper, 
-        IRepositoryBase<Exam> examRepository, 
-        IRepositoryBase<User> userRepository, 
+    public ExamService(IMapper mapper,
+        IRepositoryBase<Exam> examRepository,
+        IRepositoryBase<User> userRepository,
         IRepositoryBase<Group> groupRepository)
     {
         this.mapper = mapper;
@@ -37,7 +37,7 @@ public class ExamService : IExamService
                                             .FirstOrDefaultAsync();
 
         if (user == null)
-            throw new EduFlexException(404,"User not found");
+            throw new EduFlexException(404, "User not found");
 
         var group = await this.groupRepository.GetAllAsync()
                                               .Where(g => g.Id == dto.GroupId)
@@ -48,18 +48,18 @@ public class ExamService : IExamService
 
         var date = DateTime.ParseExact(dto.ExamDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         var exam = await this.examRepository.GetAllAsync()
-                                            .Where(e => e.ExamDate == date && 
-                                            e.GroupId == dto.GroupId && 
+                                            .Where(e => e.ExamDate == date &&
+                                            e.GroupId == dto.GroupId &&
                                             e.StudentId == dto.StudentId)
                                             .AsNoTracking()
                                             .FirstOrDefaultAsync();
 
         if (exam != null)
             throw new EduFlexException(400, "Exam already exists");
-        if(dto.ExamResult < 0)
+        if (dto.ExamResult < 0)
             throw new EduFlexException(400, "Invalid exam result");
 
-        if(dto.ExamResult >= 60)
+        if (dto.ExamResult >= 60)
             exam.Status = ExamStatus.passed;
         else
             exam.Status = ExamStatus.failed;
@@ -132,7 +132,7 @@ public class ExamService : IExamService
 
         var date = DateTime.ParseExact(dto.ExamDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-        var entity = this.mapper.Map(dto,exam);
+        var entity = this.mapper.Map(dto, exam);
         entity.ExamDate = date;
         entity.UpdatedAt = DateTime.UtcNow;
 
