@@ -1,7 +1,7 @@
 ﻿using EduFlex.Domain.Enums;
-using EduFlex.Service.DTOs.Users.UserRole;
+using EduFlex.Domain.DTOs.Users.UserRole;
 
-namespace EduFlex.Service.Interfaces.Users;
+namespace EduFlex.Domain.Interfaces.Users;
 
 public interface IUserRoleService
 {

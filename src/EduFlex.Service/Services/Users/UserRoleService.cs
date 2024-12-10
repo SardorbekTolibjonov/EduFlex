@@ -2,12 +2,12 @@
 using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Users;
 using EduFlex.Domain.Enums;
-using EduFlex.Service.DTOs.Users.UserRole;
-using EduFlex.Service.Exceptions;
-using EduFlex.Service.Interfaces.Users;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Users.UserRole;
+using EduFlex.Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace EduFlex.Service.Services.Users;
+namespace EduFlex.Domain.Services.Users;
 
 public class UserRoleService : IUserRoleService
 {

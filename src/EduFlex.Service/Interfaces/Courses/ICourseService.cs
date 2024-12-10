@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Courses;
+﻿using EduFlex.Domain.DTOs.Courses;
 
-namespace EduFlex.Service.Interfaces.Courses;
+namespace EduFlex.Domain.Interfaces.Courses;
 
 public interface ICourseService
 {

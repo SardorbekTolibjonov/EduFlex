@@ -1,6 +1,6 @@
-﻿using EduFlex.Service.DTOs.Users.User;
+﻿using EduFlex.Domain.DTOs.Users.User;
 
-namespace EduFlex.Service.Interfaces.Users;
+namespace EduFlex.Domain.Interfaces.Users;
 
 public interface IUserService
 {

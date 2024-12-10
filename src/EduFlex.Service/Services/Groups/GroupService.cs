@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using EduFlex.Service.Exceptions;
 using EduFlex.Data.IRepositories;
-using EduFlex.Service.DTOs.Groups;
-using Microsoft.EntityFrameworkCore;
-using EduFlex.Domain.Entities.Users;
-using EduFlex.Domain.Entities.Groups;
 using EduFlex.Domain.Entities.Courses;
-using EduFlex.Service.Interfaces.Groups;
+using EduFlex.Domain.Entities.Groups;
+using EduFlex.Domain.Entities.Users;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Groups;
+using EduFlex.Domain.Interfaces.Groups;
+using Microsoft.EntityFrameworkCore;
 
-namespace EduFlex.Service.Services.Groups;
+namespace EduFlex.Domain.Services.Groups;
 
 public class GroupService : IGroupService
 {
@@ -33,6 +33,9 @@ public class GroupService : IGroupService
     }
     public async Task<GroupForResultDto> AddGroupAsync(GroupForCreationDto dto)
     {
+        if (IsValidGroupStatus((int)dto.Status) is false)
+            throw new EduFlexException(400, "Invalid group status");
+
         var teacher = await this.userRepository.GetAllAsync()
                                                .Where(c => c.Id == dto.TeacherId)
                                                .AsNoTracking()
@@ -110,6 +113,9 @@ public class GroupService : IGroupService
 
     public async Task<GroupForResultDto> UpdateGroupAsync(long id, GroupForUpdateDto dto)
     {
+        if (IsValidGroupStatus((int)dto.Status) is false)
+            throw new EduFlexException(400, "Invalid group status");
+
         var teacher = await this.userRepository.GetAllAsync()
                                                .Where(c => c.Id == dto.TeacherId)
                                                .AsNoTracking()
@@ -144,5 +150,13 @@ public class GroupService : IGroupService
         var result = await this.repository.UpdateAsync(mappedGroup);
 
         return this.mapper.Map<GroupForResultDto>(result);
+    }
+
+    private bool IsValidGroupStatus(int status)
+    {
+        if (status == 0 || status == 1 || status == 2)
+            return true;
+
+        return false;
     }
 }

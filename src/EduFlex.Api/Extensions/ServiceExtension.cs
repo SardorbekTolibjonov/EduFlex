@@ -1,12 +1,18 @@
 ﻿using EduFlex.Data.IRepositories;
 using EduFlex.Data.Repositories;
-using EduFlex.Service.Interfaces.Courses;
-using EduFlex.Service.Interfaces.Groups;
-using EduFlex.Service.Interfaces.Users;
-using EduFlex.Service.Mappings;
-using EduFlex.Service.Services.Courses;
-using EduFlex.Service.Services.Groups;
-using EduFlex.Service.Services.Users;
+using EduFlex.Domain.Interfaces.Attendances;
+using EduFlex.Domain.Interfaces.Courses;
+using EduFlex.Domain.Interfaces.Exams;
+using EduFlex.Domain.Interfaces.Groups;
+using EduFlex.Domain.Interfaces.Sessions;
+using EduFlex.Domain.Interfaces.Users;
+using EduFlex.Domain.Mappings;
+using EduFlex.Domain.Services.Attendances;
+using EduFlex.Domain.Services.Courses;
+using EduFlex.Domain.Services.Exams;
+using EduFlex.Domain.Services.Groups;
+using EduFlex.Domain.Services.Sessions;
+using EduFlex.Domain.Services.Users;
 
 namespace EduFlex.Api.Extensions;
 
@@ -25,5 +31,9 @@ public static class ServiceExtension
         services.AddScoped<IUserRoleService, UserRoleService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IGroupService, GroupService>();
+        services.AddScoped<IUserGroupService, UserGroupService>();
+        services.AddScoped<IExamService, ExamService>();
+        services.AddScoped<ISessionService,SessionService>();
+        services.AddScoped<IAttendanceService, AttendanceService>();
     }
 }

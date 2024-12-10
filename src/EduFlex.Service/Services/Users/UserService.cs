@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using EduFlex.Service.Exceptions;
 using EduFlex.Data.IRepositories;
 using EduFlex.Domain.Entities.Users;
+using EduFlex.Domain.Exceptions;
+using EduFlex.Domain.DTOs.Users.User;
+using EduFlex.Domain.Interfaces.Users;
 using Microsoft.EntityFrameworkCore;
-using EduFlex.Service.DTOs.Users.User;
-using EduFlex.Service.Interfaces.Users;
 
-namespace EduFlex.Service.Services.Users;
+namespace EduFlex.Domain.Services.Users;
 
 public class UserService : IUserService
 {

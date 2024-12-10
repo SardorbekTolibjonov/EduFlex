@@ -4,5 +4,6 @@ public enum AttendanceStatus
 {
     present, // bor
     absent,  // yo'q
-    excused  // sababli
+    excused,  // sababli
+    late     // kechikkan
 }

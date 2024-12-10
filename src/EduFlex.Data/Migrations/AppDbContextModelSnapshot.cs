@@ -96,6 +96,9 @@ namespace EduFlex.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<float>("ExamResult")
                         .HasColumnType("real");
 
@@ -187,14 +190,14 @@ namespace EduFlex.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
 
                     b.Property<long>("GroupId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<string>("Topic")
                         .HasColumnType("nvarchar(max)");

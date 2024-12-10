@@ -1,6 +1,6 @@
 ﻿using EduFlex.Api.Models;
-using EduFlex.Service.DTOs.Courses;
-using EduFlex.Service.Interfaces.Courses;
+using EduFlex.Domain.DTOs.Courses;
+using EduFlex.Domain.Interfaces.Courses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduFlex.Api.Controllers.Courses;
